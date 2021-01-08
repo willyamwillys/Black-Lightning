@@ -39,17 +39,17 @@ async def start(event):
     replied_user = await event.client(GetFullUserRequest(event.sender_id))
     firstname = replied_user.user.first_name
     vent = event.chat_id
-    starttext = f"Hello, {firstname} ! Nice To Meet You, Well I Am {bot_id}, An Powerfull Assistant Bot. \n\nMy [➤ Master](tg://user?id={bot.uid}) \nYou Can Talk/Contact My Master Using This Bot. \n\nIf You Want Your Own Assistant You Can Deploy From Button Below. \n\nPowered By [вℓα¢к ℓιgнтηιηg](https://t.me/lightningsupport)"
+    starttext = f"Hello, {firstname} ! Senang Bertemu Anda, Saya {bot_id},  Bot Asisten. \n\nMy [➤ Master](tg://user?id={bot.uid}) \nAnda Dapat Berbicara / Menghubungi Master Saya Menggunakan Bot Ini. \n\nJika Anda Ingin Asisten Anda Sendiri, Anda Dapat Menerapkan Dari Tombol Di Bawah Ini. \n\nPowered By [WillyamWillys](https://t.me/willyamwillys)"
     if event.sender_id == bot.uid:
         await tgbot.send_message(
             vent,
-            message=f"Hi Master, It's Me {bot_id}, Your Assistant ! \nWhat You Wanna Do today ?",
+                message=f"Hai Master, Ini Aku {bot_id}, Asisten Anda ! \nApa yang Ingin Anda Lakukan hari ini ?",
             buttons=[
-                [custom.Button.inline("Show Users 🔥", data="users")],
-                [custom.Button.inline("Commands For Assistant", data="gibcmd")],
+                [custom.Button.inline("Tampilkan Pengguna 🔥", data="users")],
+                [custom.Button.inline("Perintah Untuk Asisten", data="gibcmd")],
                 [
                     Button.url(
-                        "Add Me to Group 👥", f"t.me/{bot_username}?startgroup=true"
+                        "Tambahkan Saya ke Grup 👥", f"t.me/{bot_username}?startgroup=true"
                     )
                 ],
             ],
@@ -64,8 +64,8 @@ async def start(event):
             message=starttext,
             link_preview=False,
             buttons=[
-                [custom.Button.inline("Deploy your Black Lightning ", data="deploy")],
-                [Button.url("Help Me ❓", "https://t.me/lightningsupport")],
+                [custom.Button.inline("Deploy your Bot ", data="deploy")],
+                [Button.url("Help Me ❓", "https://t.me/willyamwillys")],
             ],
         )
 
@@ -79,7 +79,7 @@ async def help(event):
     if event.query.user_id is not bot.uid:
         await tgbot.send_message(
             event.chat_id,
-            message="You Can Deploy Black Lightning In Heroku By Following Steps Bellow, You Can See Some Quick Guides On Support Channel Or On Your Own Assistant Bot. \nThank You For Contacting Me.",
+                message="Anda Dapat Menerapkan Userbot ini Di Heroku Dengan Mengikuti Langkah-Langkah Di Bawah Ini, Anda Dapat Melihat Beberapa Panduan Cepat Di Saluran Dukungan Atau Di Bot Asisten Anda Sendiri. \nTerima kasih telah menghubungi saya.",
             buttons=[
                 [
                     Button.url(
@@ -87,7 +87,7 @@ async def help(event):
                         "https://www.youtube.com/watch?v=GfZMqrCAqxI",
                     )
                 ],
-                [Button.url("Need Help ❓", "https://t.me/lightninggroup")],
+                [Button.url("Need Help ❓", "https://t.me/willyamwillys")],
             ],
         )
 
@@ -97,7 +97,7 @@ async def users(event):
     if event.query.user_id == bot.uid:
         await event.delete()
         total_users = get_all_users()
-        users_list = "List Of Total Users In Bot. \n\n"
+        users_list = "Daftar Total Pengguna Dalam Bot. \n\n"
         for starked in total_users:
             users_list += ("==> {} \n").format(int(starked.chat_id))
         with io.BytesIO(str.encode(users_list)) as tedt_file:
@@ -106,7 +106,7 @@ async def users(event):
                 event.chat_id,
                 tedt_file,
                 force_document=True,
-                caption="Total Users In Your Bot.",
+                    caption="Total Pengguna Di Bot Anda.",
                 allow_cache=False,
             )
     else:
@@ -116,7 +116,7 @@ async def users(event):
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"gibcmd")))
 async def users(event):
     await event.delete()
-    grabon = "Hello Here Are Some Commands \n➤ /start - Check if I am Alive \n➤ /ping - Pong! \n➤ /tr <lang-code> \n➤ /broadcast - Sends Message To all Users In Bot \n➤ /id - Shows ID of User And Media. \n➤ /addnote - Add Note \n➤ /notes - Shows Notes \n➤ /rmnote - Remove Note \n➤ /alive - Am I Alive? \n➤ /bun - Works In Group , Bans A User. \n➤ /unbun - Unbans A User in Group \n➤ /prumote - Promotes A User \n➤ /demute - Demotes A User \n➤ /pin - Pins A Message \n➤ /stats - Shows Total Users In Bot \n➤ /purge - Reply It From The Message u Want to Delete (Your Bot Should be Admin to Execute It) \n➤ /del - Reply a Message Tht Should Be Deleted (Your Bot Should be Admin to Execute It)"
+    grabon = "Halo, Ini Beberapa Perintah \n➤ /start - Periksa apakah saya Hidup \n➤ /ping - Pong! \n➤ /tr <lang-code> \n➤ /broadcast - Mengirim Pesan Ke semua Pengguna Di Bot \n➤ /id - Menunjukkan ID Pengguna Dan Media. \n➤ /addnote - Menambahkan catatan \n➤ /notes - Menunjukkan Catatan \n➤ /rmnote - Hapus Catatan \n➤ /alive - Apakah saya hidup? \n➤ /bun - Bekerja Dalam Grup, Melarang Pengguna. \n➤ /unbun - Membatalkan Larangan Pengguna dalam Grup \n➤ /prumote - Mempromosikan Pengguna \n➤ /demute - Mendemosikan Pengguna \n➤ /pin - Pin Pesan \n➤ /stats - Menampilkan Pengguna Total Di Bot \n➤ /purge - Balas Dari Pesan yang Ingin Anda Hapus (Bot Anda Harus Admin untuk Menjalankannya) \n➤ /del - Balas Pesan Yang Harus Dihapus (Bot Anda Harus Admin untuk Menjalankannya)"
     await tgbot.send_message(event.chat_id, grabon)
 
 
@@ -174,7 +174,7 @@ async def sedlyfsir(event):
                 pass
     await tgbot.send_message(
         event.chat_id,
-        f"Broadcast Done in {sent_count} Group/Users and I got {error_count} Error and Total Number Was {len(userstobc)}",
+        f"Siaran Selesai {sent_count} Grup / Pengguna dan saya mendapat {error_count} Kesalahan dan Jumlah Total {len(userstobc)}",
     )
 
 
@@ -184,13 +184,13 @@ async def sedlyfsir(event):
 async def starkisnoob(event):
     starkisnoob = get_all_users()
     await event.reply(
-        f"**Stats Of Your Bot** \nTotal Users In Bot => {len(starkisnoob)}"
+        f"**Statistik Bot Anda** \nTotal Pengguna Dalam Bot => {len(starkisnoob)}"
     )
 
 
 @tgbot.on(events.NewMessage(pattern="^/help", func=lambda e: e.sender_id == bot.uid))
 async def starkislub(event):
-    grabonx = "Hello Here Are Some Commands \n➤ /start - Check if I am Alive \n➤ /ping - Pong! \n➤ /tr <lang-code> \n➤ /broadcast - Sends Message To all Users In Bot \n➤ /id - Shows ID of User And Media. \n➤ /addnote - Add Note \n➤ /notes - Shows Notes \n➤ /rmnote - Remove Note \n➤ /alive - Am I Alive? \n➤ /bun - Works In Group , Bans A User. \n➤ /unbun - Unbans A User in Group \n➤ /prumote - Promotes A User \n➤ /demute - Demotes A User \n➤ /pin - Pins A Message \n➤ /stats - Shows Total Users In Bot"
+    grabonx = "Halo, Ini Beberapa Perintah \n➤ /start - Periksa apakah saya Hidup \n➤ /ping - Pong! \n➤ /tr <lang-code> \n➤ /broadcast - Mengirim Pesan Ke semua Pengguna Di Bot \n➤ /id - Menunjukkan ID Pengguna Dan Media. \n➤ /addnote - Menambahkan catatan \n➤ /notes - Menunjukkan catatan \n➤ /rmnote - Menghapus catatan \n➤ /alive - Apakah saya hidup? \n➤ /bun - Bekerja Dalam Grup, Melarang Pengguna. \n➤ /unbun - Membatalkan Larangan Pengguna dalam Grup \n➤ /prumote - Promotes A User \n➤ /demute - Mendemosikan Pengguna \n➤ /pin - Pin Pesan \n➤ /stats - Menampilkan Pengguna Total Di Bot"
     await event.reply(grabonx)
 
 
@@ -205,12 +205,12 @@ async def starkisnoob(event):
         user_id, reply_message_id = his_userid(msg.id)
     if is_he_added(user_id):
         user_id, reply_message_id = his_userid(msg.id)
-        await event.reply("Already Blacklisted")
+        await event.reply("Sudah Masuk Daftar Hitam")
     elif not is_he_added(user_id):
         add_nibba_in_db(user_id)
-        await event.reply("Blacklisted This Dumb Person")
+        await event.reply("Memasukkan Orang Bodoh Ini ke dalam daftar hitam")
         await tgbot.send_message(
-            user_id, "You Have Been Blacklisted And You Can't Message My Master Now."
+            user_id, "Anda Telah Masuk Daftar Hitam Dan Anda Tidak Dapat Mengirim Pesan kepada Tuan Saya Sekarang."
         )
 
 
@@ -224,10 +224,10 @@ async def starkisnoob(event):
         event.raw_text
         user_id, reply_message_id = his_userid(msg.id)
     if not is_he_added(user_id):
-        await event.reply("Not Even. Blacklisted 🤦🚶")
+        await event.reply("Bahkan tidak. Masuk daftar hitam 🤦🚶")
     elif is_he_added(user_id):
         removenibba(user_id)
-        await event.reply("DisBlacklisted This Dumb Person")
+        await event.reply("Lepaskan Orang Bodoh Ini dari Daftar Hitam")
         await tgbot.send_message(
-            user_id, "Congo! You Have Been Unblacklisted By My Master."
+            user_id, "Selamat! Anda Telah Dicabut Daftar Hitam Oleh Tuan Saya."
         )
