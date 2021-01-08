@@ -20,7 +20,7 @@ async def _(event):
         lan, text = input_str.split("|")
     else:
         await tgbot.send_message(
-            event.chat_id, "`.tr LanguageCode` as reply to a message"
+            event.chat_id, "`.tr LanguageCode` sebagai balasan pesan"
         )
         return
     text = emoji.demojize(text.strip())
@@ -29,10 +29,10 @@ async def _(event):
     translated = translator.translate(text, dest=lan)
     after_tr_text = translated.text
     output_str = (
-        f"**Translated By Lightning Assistant Bot** \n"
-        f"Source {translated.src} \nTranslation {lan} \nWhat I Can Translate From This {after_tr_text}"
+        f"**Diterjemahkan oleh WillyamWillys Assistant Bot** \n"
+        f"Sumber {translated.src} \nTerjemahan {lan} \nYang Dapat Saya Terjemahkan Dari Ini {after_tr_text}"
     )
     try:
         await tgbot.send_message(event.chat_id, output_str)
     except Exception:
-        await tgbot.send_message(event.chat_id, "Something Went Wrong 🤔")
+        await tgbot.send_message(event.chat_id, "Ada yang salah 🤔")
